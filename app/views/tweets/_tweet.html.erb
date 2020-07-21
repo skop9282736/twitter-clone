@@ -1,0 +1,31 @@
+<div class="col mb-2">
+    <div class="tweet card">
+        <div class="card-header">
+            <img src="https://pbs.twimg.com/profile_images/594896310597193728/HeW_JGao_400x400.jpg"
+                height="50" width="50"
+                class="rounded-circle mr-3">
+            <span class="name">Ismail Aidar</span>
+            <span class="username"><b>@IsmailAidar</b></span>
+            <span class="ml-2 date"><%= tweet.created_at %></span>
+        </div>
+        <div class="card-body">
+            <p>
+                <%= tweet.body %>
+            </p>
+        </div>
+        <div class="card-header d-flex justify-content-between">
+            <div>
+                <button>Like</button>
+                <span class="linkes">122</span>
+            </div>
+            <div>
+                <button>Retweet</button>
+                <span class="linkes">33</span>
+            </div>
+            <div>
+                <button>Comment</button>
+                <span class="linkes">154</span>
+            </div>
+        </div>
+    </div>
+</div>
