@@ -6,9 +6,15 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.where(user: current_user)
+    @tweets = Tweet.order(created_at: :desc)
     @tweet = Tweet.new
   end
+
+  def my_tweets
+    @tweets = current_user.tweets.order(created_at: :desc)
+    @tweet = Tweet.new
+  end
+
 
   # GET /tweets/1
   # GET /tweets/1.json

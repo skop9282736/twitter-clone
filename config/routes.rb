@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'tweets#index'
-  resources :tweets
+  resources :tweets, only: [ :new, :create, :index, :show, :destroy ]
   devise_for :users
+  get 'my_tweets', to: 'tweets#my_tweets'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

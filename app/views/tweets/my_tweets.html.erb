@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'form', tweet: @tweet %>
+
+<%= render @tweets if current_page?(my_tweets_path) %>
