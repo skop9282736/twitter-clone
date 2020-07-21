@@ -4,9 +4,8 @@
             <img src="https://pbs.twimg.com/profile_images/594896310597193728/HeW_JGao_400x400.jpg"
                 height="50" width="50"
                 class="rounded-circle mr-3">
-            <span class="name">Ismail Aidar</span>
-            <span class="username"><b>@IsmailAidar</b></span>
-            <span class="ml-2 date"><%= tweet.created_at %></span>
+            <span class="username"><%= tweet.user.username %></span>
+            <span class="ml-2 date"><%= tweet.created_at.localtime %></span>
         </div>
         <div class="card-body">
             <p>
