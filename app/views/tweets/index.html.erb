@@ -1,9 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tweets</h1>
+<%= render 'form', tweet: @tweet %>
 
 <%= render @tweets %>
-
-<br>
-
-<%= link_to 'New Tweet', new_tweet_path %>

@@ -7,6 +7,7 @@ class TweetsController < ApplicationController
   # GET /tweets.json
   def index
     @tweets = Tweet.where(user: current_user)
+    @tweet = Tweet.new
   end
 
   # GET /tweets/1
@@ -31,10 +32,10 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
-        format.json { render :show, status: :created, location: @tweet }
+        format.html { redirect_to index, notice: 'Tweet was successfully created.' }
+        format.json { render :index, status: :created, location: @tweet }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
       end
     end
