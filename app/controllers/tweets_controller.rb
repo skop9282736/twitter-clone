@@ -8,12 +8,23 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.order(created_at: :desc)
     @tweet = Tweet.new
+    @like = Like.new
   end
 
   def my_tweets
     @tweets = current_user.tweets.order(created_at: :desc)
     @tweet = Tweet.new
+    @like = Like.new
   end
+
+  def like_tweet
+    @like = Like.new(like_params)
+    @like.tweet = Tweet.find(params[:like][:tweet_id])
+    @like.user = current_user
+    @like.save
+    redirect_to index
+  end
+  
 
 
   # GET /tweets/1
@@ -80,5 +91,9 @@ class TweetsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def tweet_params
       params.require(:tweet).permit(:body)
+    end
+
+    def like_params
+      params.require(:like).permit(:tweet_id)
     end
 end

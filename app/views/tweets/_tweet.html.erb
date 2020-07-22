@@ -14,8 +14,13 @@
         </div>
         <div class="card-header d-flex justify-content-between">
             <div>
-                <button>Like</button>
-                <span class="linkes">122</span>
+                <%= form_with(model: @like, local: true) do |form| %>
+                    <%= form.submit 'Like', class: 'btn btn-success btn-sm' %>
+                    <%= form.hidden_field :tweet_id, value: tweet.id %>
+                    <span class="linkes">
+                        <%= tweet.likes.count %>
+                    </span>
+                <% end %>
             </div>
             <div>
                 <button>Retweet</button>
