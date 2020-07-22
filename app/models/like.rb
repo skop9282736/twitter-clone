@@ -1,6 +1,5 @@
 class Like < ApplicationRecord
-  has_many :users
-  has_many :tweets
-
-  # validates_uniqueness_of :users, scope: :tweets
+  belongs_to :user
+  belongs_to :tweet
+  validates :user,  uniqueness: { scope: :tweet }
 end

@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= render 'form', tweet: @tweet %>
+<%= render 'form', tweet: @tweet, like: @like %>
 
 <%= render @tweets if current_page?(root_path) || current_page?(tweets_path) %>
