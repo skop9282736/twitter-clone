@@ -48,26 +48,21 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
-    cable_ready["timeline-stream"].inner_html(
+
+    
+    respond_to do |format|
+      if @tweet.save
+        cable_ready["timeline-stream"].insert_adjacent_html(
           selector: "#timeline", #string containing a CSS selector or XPath expression
-          # position: "afterbegin",
-          html: '<h2>a new tweet</h2>'
+          position: "afterbegin",
+          html: render_to_string(partial: 'tweet', locals: {tweet: @tweet})
         )
-    cable_ready.broadcast
-    redirect_to root_path
-    # respond_to do |format|
-    #   if @tweet.save
-    #     cable_ready["tweet_channel"].insert_adjacent_html(
-    #       selector: "timeline", #string containing a CSS selector or XPath expression
-    #       position: "afterbegin",
-    #       html: '<h2>a new tweet</h2>'
-    #     )
-    #     cable_ready.broadcast
-    #     format.html { redirect_to index, notice: 'Tweet was successfully created.' }
-    #   else
-    #     format.html { render :index }
-    #   end
-    # end
+        cable_ready.broadcast
+        format.html { redirect_to index, notice: 'Tweet was successfully created.' }
+      else
+        format.html { redirect_to index, notice: 'Tweet was NOT created.' }
+      end
+    end
   end
 
   # PATCH/PUT /tweets/1
