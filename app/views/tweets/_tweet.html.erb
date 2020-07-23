@@ -17,7 +17,7 @@
                 <%= form_with(model: @like, local: true) do |form| %>
                     <%= form.submit 'Like', class: 'btn btn-success btn-sm' %>
                     <%= form.hidden_field :tweet_id, value: tweet.id %>
-                    <span class="linkes">
+                    <span class="linkes" id="likes-<%= tweet.id %>">
                         <%= tweet.likes.count %>
                     </span>
                 <% end %>

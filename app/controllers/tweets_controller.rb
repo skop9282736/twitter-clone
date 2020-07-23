@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery prepend: true
 
   include CableReady::Broadcaster
 
@@ -20,10 +21,16 @@ class TweetsController < ApplicationController
   end
 
   def like_tweet
+    tweet = Tweet.find(params[:like][:tweet_id])
     @like = Like.new(like_params)
-    @like.tweet = Tweet.find(params[:like][:tweet_id])
+    @like.tweet = tweet
     @like.user = current_user
     @like.save
+    cable_ready["timeline-stream"].text_content(
+      selector: "#likes-#{tweet.id}", #string containing a CSS selector or XPath expression
+      text: Like.where(tweet: tweet).count
+    )
+    cable_ready.broadcast
     redirect_to index
   end
   
