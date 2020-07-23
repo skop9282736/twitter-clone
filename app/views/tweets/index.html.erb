@@ -2,4 +2,6 @@
 
 <%= render 'form', tweet: @tweet, like: @like %>
 
-<%= render @tweets if current_page?(root_path) || current_page?(tweets_path) %>
+<div id="timeline">
+    <%= render @tweets if current_page?(root_path) || current_page?(tweets_path) %>
+</div>
