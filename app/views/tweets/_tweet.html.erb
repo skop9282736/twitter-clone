@@ -1,9 +1,16 @@
 <div class="col mb-2">
     <div class="tweet card">
         <div class="card-header">
-            <img src="https://pbs.twimg.com/profile_images/594896310597193728/HeW_JGao_400x400.jpg"
-                height="50" width="50"
-                class="rounded-circle mr-3">
+            
+            <% if tweet.user.avatar.attached? %>
+                <%= image_tag(tweet.user.avatar, :class => 'rounded-circle', 
+                    :style => 'height:50px; width:50px') %>
+            <% else %>
+                <img 
+                    src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"
+                    style='height:50px; width:50px' class='rounded-circle'>
+            <% end %>
+            
             <span class="username"><%= tweet.user.username %></span>
             <span class="ml-2 date"><%= tweet.created_at.localtime %></span>
         </div>
