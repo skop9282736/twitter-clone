@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :likes
   has_many :tweets
+  has_one_attached :avatar
 
   def username
     "@#{self.email.split('@')[0]}"
