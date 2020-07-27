@@ -13,7 +13,11 @@ class TweetReflex < ApplicationReflex
   def submit
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
-    debugger
+    if @tweet.save
+      # pass
+    else
+      # pass
+    end
   end
 
   private
