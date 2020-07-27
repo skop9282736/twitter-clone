@@ -21,8 +21,11 @@ class TweetReflex < ApplicationReflex
   #   end
   #
   # Learn more at: https://docs.stimulusreflex.com
-  def add_weet
+  def like_tweet
+    tweet = Tweet.find(element.dataset[:tweetid])
+    user = User.find(element.dataset[:userid])
     
+    Like.create(user:user, tweet:tweet)
   end
   
 end
