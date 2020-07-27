@@ -6,4 +6,6 @@ Twitter clone
 - devise
 
 ## Tweets + likes
-Real time: using cableReady
+- Real time: using cableReady.
+- Reactive tweet like.
+- Reactive tweet (create).
