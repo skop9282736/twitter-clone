@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TweetReflex < ApplicationReflex
-  include CableReady::Broadcaster
+  delegate :current_user, to: :connection
   
   def like_tweet
     tweet = Tweet.find(element.dataset[:tweetid])
