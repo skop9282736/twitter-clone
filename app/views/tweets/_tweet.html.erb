@@ -21,16 +21,18 @@
         </div>
         <div class="card-header d-flex justify-content-between">
             <div>
+                <!-- 
                 <%= form_with(model: @like, local: true) do |form| %>
                     <%= form.submit 'Like', class: 'btn btn-success btn-sm' %>
                     <%= form.hidden_field :tweet_id, value: tweet.id %>
                 <% end %>
+                -->
                 <button 
                         class='btn btn-success btn-sm'
                         data-reflex="click->TweetReflex#like_tweet"
                         data-tweetId="<%= tweet.id %>"
                         data-userId="<%= current_user.id %>"
-                >Reactive like</button>
+                >Like</button>
                 <span class="linkes" id="likes-<%= tweet.id %>">
                     <%= tweet.likes.count %>
                 </span>
